@@ -27,7 +27,7 @@
           >
           <ul class="list site-nav">
             <li class="item">
-              <a class="link link-menu" href="./index.html" target="_blank"
+              <a class="link link-menu current-page" href="./index.html" target="_blank"
                 >Студия</a
               >
             </li>
@@ -66,8 +66,6 @@
         <div class="container">
           <h1 class="hero-title">Эфективные решения для вашего бизнеса</h1>
           <button class="hero-button" type="button" data-modal-open>Заказать услугу</button>
-          <div class="modal" data-modal></div>
-          <button data-modal-close=></button>
         </div>
       </section>
       <section class="section">
@@ -134,24 +132,24 @@
                 src="./images/images-hw-1/box1.jpg"
                 alt="Набор текста на клавиатуре"
                 width="370"
-                height="294"
-              />
+                height="294">
+                <p class="label title">Десктопные приложения</p>
             </li>
             <li class="card-item">
               <img
                 src="./images/images-hw-1/box2.jpg"
                 alt="Телефон в руке перед ноутбуком"
                 width="370"
-                height="294"
-              />
+                height="294">
+                <p class="label title">Мобильные приложения</p>
             </li>
             <li class="card-item">
               <img
                 src="./images/images-hw-1/box3.jpg"
                 alt="Изображение цветовой гаммы на планшете"
                 width="370"
-                height="294"
-              />
+                height="294">
+                <p class="label title">Дизайнерские решения</p>
             </li>
           </ul>
         </div>
@@ -509,7 +507,7 @@
                     >г. Киев, пр-т Леси Украинки, 26</a
                   >
                 </li>
-                <li class="footer-contacts">
+                <li class="link footer-contacts">
                   <a
                     class="link adress-contact-link"
                     href="mailto:info@example.com"
@@ -580,6 +578,15 @@
         </ul>
       </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+           <div class="modal">
+              <button type="button" class="modal-close" data-modal-close>
+                <svg class="close-icon">
+                  <use href="./images/icons.svg#close-button"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
     <script src="./js/modal.js"></script>
   </body>
 </html>

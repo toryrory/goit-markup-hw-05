@@ -2,6 +2,7 @@
   --background-white: #e5e5e5;
   --background-dark: #2f303a;
   --background-transparent: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4));
+  --background-works: rgba(47, 48, 58, 0.8);
   --background-grey: #f5f4fa;
   --logo-blue: #2196f3;
   --logo-black: #000;
@@ -20,6 +21,12 @@
   --team-item-shadow: 0px 2px 1px 0px #00000033, 0px 1px 1px 0px #00000024, 0px 1px 3px 0px #0000001F;
   --filter-button-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
   --portfolio-item-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+  --hero-button-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  --modal-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  --portfolio-overlay-color: rgba(33, 150, 243, 0.9);
+  --backdrop-color: rgba(0, 0, 0, 0.2);
+  --timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --close-icon-border: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -148,6 +155,7 @@ img {
   align-items: center;
   padding-top: 32px;
   padding-bottom: 32px;
+  transition: var(--timing-function);
 }
 
 .icon-mail {
@@ -167,7 +175,28 @@ img {
 .link-contacts:hover,
 .link-contacts:focus {
   color: var(--logo-blue);
+  
 }
+.current-page {
+  color: var(--logo-blue);
+  position: relative;
+}
+
+.current-page::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  bottom: -1px;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--logo-blue);
+
+  transition: var(--timing-function);
+}
+
+
 
 /*Logo*/
 
@@ -194,7 +223,6 @@ img {
 /*Hero*/
 
 .hero {
-
   padding-top: 200px;
   padding-bottom: 200px;
   max-width: 1600px;
@@ -226,7 +254,66 @@ img {
   text-transform: uppercase;
 }
 
+/*Modal*/
+
+.backdrop {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop-color);
+
+  transition: var(--timing-function);
+}
+ .backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+ }
+
+ .backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+ }
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  
+  min-width: 528px;
+  min-height: 581px;
+  border-radius: 4px;
+
+  background-color: var(--text-white);
+  box-shadow: var(--modal-shadow);
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--text-white);
+  border: 1px solid var(--close-icon-border);
+  cursor: pointer;
+}
+
+.close-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--logo-black);
+}
+
 /*Buttons*/
+
 
 .hero-button {
   margin-left: auto;
@@ -240,6 +327,7 @@ img {
   line-height: 1.87;
   background-color: var(--logo-blue);
   color: var(--text-white);
+  box-shadow:var(--hero-button-shadow);
   letter-spacing: 0.06em;
   cursor: pointer;
   border-radius: 4px;
@@ -274,6 +362,8 @@ img {
   font-family: inherit;
   letter-spacing: inherit;
   border-radius: 4px;
+
+  transition: var(--timing-function);
 }
 
 .title {
@@ -338,6 +428,8 @@ img {
 
 .portfolio-link {
   display: inline-block;
+
+  transition: var(--timing-function);
 }
 
 .portfolio-link:hover,
@@ -345,6 +437,31 @@ img {
   box-shadow: var(--portfolio-item-shadow);
 }
 
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay {
+  position: absolute;
+
+  padding: 63px 24px;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+
+  font-size: 18px;
+  line-height: 1.56;
+  
+  transform: translateY(100%);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-link:hover .portfolio-overlay{
+  color: var(--text-white);
+  background-color: var(--portfolio-overlay-color);
+  transform: translateY(0);
+}
 /*Cards*/
 
 .work {
@@ -362,6 +479,20 @@ img {
   font-family: "Roboto";
   color: var(--text-black);
   font-style: normal;
+}
+.work-list .card-item {
+  position: relative;
+}
+.label {
+  position: absolute;
+
+  margin-bottom: 0;
+  padding: 27px 0;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  color: var(--text-white);
+  background-color: var(--background-works);
 }
 
 /*Team*/
@@ -409,6 +540,8 @@ img {
   width: 20px;
   height: 20px;
   fill: var(--icons-colour);
+
+  transition: var(--timing-function);
 }
 
 .social-item .social-link:hover .social-icon,
@@ -432,12 +565,17 @@ img {
   justify-content: center;
   border-radius: 4px;
   border: 1px solid var(--inner-border-clients);
+
+  transition: var(--timing-function);
+  
+   /*как добавить транзишн и на икону*/
 }
 
 .client-icon {
   width: 106px;
   height: 60px;
   fill: var(--icons-colour);
+  transition: var(--timing-function);
 }
 
 .client-link:hover,
@@ -467,6 +605,9 @@ img {
 
 .footer-contacts:not(:last-child) {
   margin-bottom: 9px;
+}
+.footer-contacts .link {
+  transition: var(--timing-function);
 }
 
 .logo-white {
@@ -511,7 +652,7 @@ img {
   margin-right: 10px;
 }
 
-.social-item .social-link {
+ .social-link {
   display: flex;
 
   align-items: center;
@@ -520,6 +661,8 @@ img {
   height: 44px;
   border-radius: 50%;
   background-color: var(--background-footer-icons);
+
+  transition: var(--timing-function); /*как добавить транзишн и на икону*/
 }
 
 .footer .social-icon {
