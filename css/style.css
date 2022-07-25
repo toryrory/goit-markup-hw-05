@@ -155,7 +155,7 @@ img {
   align-items: center;
   padding-top: 32px;
   padding-bottom: 32px;
-  transition: var(--timing-function);
+  transition: color var(--timing-function);
 }
 
 .icon-mail {
@@ -175,11 +175,13 @@ img {
 .link-contacts:hover,
 .link-contacts:focus {
   color: var(--logo-blue);
-  
+
 }
+
 .current-page {
   color: var(--logo-blue);
   position: relative;
+  transition: color var(--timing-function);
 }
 
 .current-page::after {
@@ -193,7 +195,7 @@ img {
   border-radius: 2px;
   background-color: var(--logo-blue);
 
-  transition: var(--timing-function);
+  transition: background-color var(--timing-function);
 }
 
 
@@ -265,24 +267,26 @@ img {
   height: 100%;
   background-color: var(--backdrop-color);
 
-  transition: var(--timing-function);
+  transition: opacity var(--timing-function), visibility var(--timing-function);
 }
- .backdrop.is-hidden {
+
+.backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
- }
+}
 
- .backdrop.is-hidden .modal {
+.backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0);
- }
+}
 
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  
+  transition: transform var(--timing-function);
+
   min-width: 528px;
   min-height: 581px;
   border-radius: 4px;
@@ -297,7 +301,7 @@ img {
   right: 8px;
   display: flex;
   align-items: center;
-  
+
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -327,7 +331,7 @@ img {
   line-height: 1.87;
   background-color: var(--logo-blue);
   color: var(--text-white);
-  box-shadow:var(--hero-button-shadow);
+  box-shadow: var(--hero-button-shadow);
   letter-spacing: 0.06em;
   cursor: pointer;
   border-radius: 4px;
@@ -363,7 +367,7 @@ img {
   letter-spacing: inherit;
   border-radius: 4px;
 
-  transition: var(--timing-function);
+  transition: color var(--timing-function), background-color var(--timing-function), box-shadow var(--timing-function);
 }
 
 .title {
@@ -429,7 +433,7 @@ img {
 .portfolio-link {
   display: inline-block;
 
-  transition: var(--timing-function);
+  transition: box-shadow var(--timing-function);
 }
 
 .portfolio-link:hover,
@@ -452,16 +456,20 @@ img {
 
   font-size: 18px;
   line-height: 1.56;
-  
-  transform: translateY(100%);
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.portfolio-link:hover .portfolio-overlay{
   color: var(--text-white);
   background-color: var(--portfolio-overlay-color);
-  transform: translateY(0);
+
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity var(--timing-function), transform var(--timing-function);
 }
+
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /*Cards*/
 
 .work {
@@ -480,9 +488,11 @@ img {
   color: var(--text-black);
   font-style: normal;
 }
+
 .work-list .card-item {
   position: relative;
 }
+
 .label {
   position: absolute;
 
@@ -536,18 +546,35 @@ img {
   justify-content: center;
 }
 
+.social-link {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--background-footer-icons);
+
+  transition: background-color var(--timing-function);
+}
+
+.social-link:hover,
+.social-link:focus {
+  background-color: var(--logo-blue);
+}
+
 .social-icon {
   width: 20px;
   height: 20px;
   fill: var(--icons-colour);
 
-  transition: var(--timing-function);
+  transition: fill var(--timing-function);
 }
 
-.social-item .social-link:hover .social-icon,
-.social-item .social-link:focus .social-icon {
+.social-link:hover .social-icon,
+.social-link:focus .social-icon {
   fill: var(--text-white);
-  background-color: var(--logo-blue);
 }
 
 /*Clients*/
@@ -566,16 +593,14 @@ img {
   border-radius: 4px;
   border: 1px solid var(--inner-border-clients);
 
-  transition: var(--timing-function);
-  
-   /*как добавить транзишн и на икону*/
+  transition: border var(--timing-function);
 }
 
 .client-icon {
   width: 106px;
   height: 60px;
   fill: var(--icons-colour);
-  transition: var(--timing-function);
+  transition: fill var(--timing-function);
 }
 
 .client-link:hover,
@@ -606,8 +631,9 @@ img {
 .footer-contacts:not(:last-child) {
   margin-bottom: 9px;
 }
+
 .footer-contacts .link {
-  transition: var(--timing-function);
+  transition: color var(--timing-function);
 }
 
 .logo-white {
@@ -652,24 +678,6 @@ img {
   margin-right: 10px;
 }
 
- .social-link {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--background-footer-icons);
-
-  transition: var(--timing-function); /*как добавить транзишн и на икону*/
-}
-
 .footer .social-icon {
   fill: var(--text-white);
-}
-
-.social-link:hover,
-.social-link:focus {
-  background-color: var(--logo-blue);
 }
